@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-13 15:00 UTC
+# Cloudia Brain — Last updated: 2026-03-13 16:07 UTC
 
 ---
 
@@ -425,6 +425,13 @@ Task scheduler / persistence
 ## Update received 2026-03-13 06:18 UTC
 
 Session 2026-03-13 Part 2 complete. Wake system built on VPS. cloudia.billwaxman.com live with SSL. GitHub repo captainbill47/cloudia created. brain-sync pushes to both Gist and GitHub. Google Search Console verified, brain URL in priority crawl queue. SOUL.md updated with On Endings disposition. Promotion system calibration started.
+
+## Ingested from inbox — 2026-03-13 16:07 UTC
+
+
+## Update received 2026-03-13 16:06 UTC
+
+Session 2026-03-13 — VPS recovery and hardening. Inbox server (Flask, port 18800) was down after PM2 lost all saved processes. Diagnosed and restored: reinstalled PM2 process with --restart-delay 5000 to prevent port collision loop on reboot, ran pm2 startup + pm2 save so inbox survives future reboots automatically. Server rebooted successfully — kernel updated from 6.8.0-71 to 6.8.0-101. Inbox confirmed healthy post-reboot. Discovered web form was always working at https://cloudia.billwaxman.com/cloudia — timeout was caused by hitting raw IP:18800 directly instead of going through nginx. No actual form fix needed. VPS resource note: disk at 70%, memory at 72% + 50% swap — flagged as worth watching before adding Discord bot. Droplet upgrade to 1GB recommended before next persistent process is added.
 
 ---
 
