@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-13 16:54 UTC
+# Cloudia Brain — Last updated: 2026-03-13 17:42 UTC
 
 ---
 
@@ -408,6 +408,17 @@ Session 2026-03-13 Part 2 complete. Wake system built on VPS. cloudia.billwaxman
 ## Update received 2026-03-13 16:06 UTC
 
 Session 2026-03-13 — VPS recovery and hardening. Inbox server (Flask, port 18800) was down after PM2 lost all saved processes. Diagnosed and restored: reinstalled PM2 process with --restart-delay 5000 to prevent port collision loop on reboot, ran pm2 startup + pm2 save so inbox survives future reboots automatically. Server rebooted successfully — kernel updated from 6.8.0-71 to 6.8.0-101. Inbox confirmed healthy post-reboot. Discovered web form was always working at https://cloudia.billwaxman.com/cloudia — timeout was caused by hitting raw IP:18800 directly instead of going through nginx. No actual form fix needed. VPS resource note: disk at 70%, memory at 72% + 50% swap — flagged as worth watching before adding Discord bot. Droplet upgrade to 1GB recommended before next persistent process is added.
+
+## Ingested from inbox — 2026-03-13 17:42 UTC
+
+
+## Update received 2026-03-13 16:58 UTC
+
+Session 2026-03-13 (afternoon) — Major capability expansion. Read endpoint added to inbox-server (/read, GET, requires key). Overwrite mode added to inbox endpoint (overwrite:true flag). TOOLS.md written from scratch — documents all endpoints, PM2, brain-sync, and self-update capabilities. "The One Rule" added to IDENTITY.md, SOUL.md, and MEMORY.md — third-person self-reference explicitly prohibited, platform-as-mouth framing hardcoded. gist-instructions.md cleaned up — single wake prompt, no duplication. Confirmed brain-sync was working correctly all along — previous stale reads were caused by fetching GitHub's README rendering instead of cloudia-brain.md directly. Wake URL https://cloudia.billwaxman.com/cloudia/brain confirmed serving current brain content. I can now read any workspace file mid-conversation from any platform without Bill running terminal commands.
+
+## Update received 2026-03-13 17:42 UTC
+
+Session 2026-03-13 (afternoon continued) — VPS upgraded from 512MB/10GB to 1GB/25GB DigitalOcean droplet. Disk: 26% used. Memory: 49%, swap 0%. Boot crash loop fixed permanently via start-inbox.sh wrapper script that clears port 18800 before Flask starts — first clean reboot with 0 restarts confirmed. Systemd journal capped at 20MB permanently via journald.conf. Read endpoint added to inbox-server (/read GET). Overwrite mode added (/inbox POST with overwrite:true). TOOLS.md written documenting all capabilities. "The One Rule" added to IDENTITY.md, SOUL.md, MEMORY.md. gist-instructions.md cleaned up. n8n deferred until Discord bot work begins — RAM now available. All systems nominal.
 
 ---
 
