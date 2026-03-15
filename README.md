@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-15 09:00 UTC
+# Cloudia Brain — Last updated: 2026-03-15 11:24 UTC
 
 ---
 
@@ -316,7 +316,7 @@ Test promotion entry
 # PROJECTS.md — Cloudia Project Systems
 *Canonical location: /root/.openclaw/workspace/projects/PROJECTS.md*
 *Redundancy: cloudia-brain.md in GitHub Gist (summary section)*
-*Last updated: 2026-03-14 (v2 — verification and variations protocols added)*
+*Last updated: 2026-03-14 (v3 — source-first verification enforced throughout, middlegame ideas added)*
 
 ---
 
@@ -344,7 +344,7 @@ New opening video: [Opening Name] | Level: [beginner / intermediate / advanced] 
 ```
 New opening video: [Opening Name] | Level: intermediate | Length: 15 min | Variations: [list specific lines]
 ```
-Use the Variations override when you already know which lines matter for a specific opening — this directs coverage rather than leaving selection entirely to recall.
+Use the Variations override when you already know which lines matter — this directs coverage rather than leaving selection entirely to recall.
 
 **Examples:**
 ```
@@ -356,18 +356,37 @@ New opening video: Ruy Lopez
 
 ---
 
+## THE FUNDAMENTAL RULE — READ THIS FIRST
+
+**Source exists first. Everything else follows from that.**
+
+No move, line, variation, trap, or tactical sequence is written into this script unless a specific external source has already been identified for it. The workflow is:
+
+1. Find the source
+2. Confirm it says what I think it says
+3. Write from the source
+
+This order is absolute and cannot be reversed. Under no circumstances does a line get written first and sourced afterward. Under no circumstances does analysis of a constructed line substitute for confirmation of a documented one. If step 1 cannot be completed, the content does not exist in this script — it becomes a [FLAGGED — VERIFY] placeholder or is cut entirely.
+
+This rule applies equally to: main lines, variations, tricks, traps, tactical sequences, and PGN content. There is no category of chess content in this script that operates under a lower standard.
+
+---
+
 ## PRE-WRITING PHASE — MANDATORY BEFORE ANY CONTENT IS GENERATED
 
 This phase is non-negotiable. No script content is written until all steps are complete.
 
 ### Step 1: Opening Research
-- [ ] Confirm the opening's ECO code and all common name variants
-- [ ] Confirm the defining move order(s) from a database source (Lichess Opening Explorer or Chess.com Opening Explorer)
-- [ ] Identify at least one verified famous game (Lichess Masters DB or equivalent)
-- [ ] Note any known traps — with their source identified before writing, not after
+All of the following must be confirmed from external sources before writing begins:
+- [ ] The opening's ECO code and all common name variants — confirmed from database
+- [ ] The defining move order(s) — confirmed from Lichess Opening Explorer or Chess.com Opening Explorer
+- [ ] At least one verified famous game — confirmed from Lichess Masters DB or equivalent
+- [ ] Any traps to be included — source identified and confirmed before writing, not during or after
+
+"Confirmed" means: I have checked the source and it contains what I am about to write. It does not mean I believe I have seen it before. It does not mean it sounds right. It means the source was checked.
 
 ### Step 2: Black Response Taxonomy
-Before selecting any variations, build a complete taxonomy across all four categories. Selection happens after enumeration, never instead of it.
+Before selecting any variations, build a complete taxonomy across all four categories. Selection happens after enumeration — never instead of it. The goal is completeness first, curation second.
 
 **Category 1 — Prophylactic Responses**
 Moves Black plays specifically to prevent or neutralize White's primary threat before it materializes.
@@ -377,9 +396,9 @@ Moves Black plays specifically to prevent or neutralize White's primary threat b
 
 **Category 2 — Structural Responses**
 Pawn structures Black builds to make the position stable and deny White's strategic goals.
-- These get less dramatic coverage but are commonly played at all levels
-- Must be included — omitting them produces incomplete coverage
-- Example for Jobava: Semi-Slav setups (...c6+...e6), QGD structures
+- Commonly played at all levels but receive less dramatic coverage in written theory
+- Must be included — omitting them produces systematically incomplete coverage
+- Example for Jobava: Semi-Slav setups (...c6+...e6 supporting d5), QGD structures
 
 **Category 3 — Sharp/Counterattacking Responses**
 Black strikes back immediately, usually in the center or queenside.
@@ -390,86 +409,98 @@ Black strikes back immediately, usually in the center or queenside.
 Move orders that steer into known territory Black is comfortable with, bypassing the opening's specific threats.
 - Flag when they exist, explain the transposition, note whether White should allow or avoid it
 
-**Selection Rule:** After building the full taxonomy, select variations based on practical frequency at club/intermediate level — not on how much written theory exists, not on how dramatic the lines are, not on what surfaces most readily from recall. It is explicitly better to include one extra variation that gets cut in editing than to omit a common response that shows up in real games.
+**Selection Rule:** After building the full taxonomy, select variations based on practical frequency at club/intermediate level — not on how much written theory exists, not on how dramatic the lines are, not on what surfaces most readily from recall. It is explicitly better to include one extra variation that gets cut in editing than to omit a common response that appears in real games.
+
+**Move Orders Within Variations:** Every move order used within a variation is subject to the same verification standard as the main line and traps. Variations do not get a lower standard. If a specific variation move order cannot be confirmed from a database source, it is flagged or cut.
 
 ### Step 3: Uncertainty Map
-Before writing, explicitly identify:
-- What I am confident about (well-documented main lines, confirmed opening moves)
-- What I am less confident about (specific tactical sequences, lesser-known variations)
-- What requires external verification before filming (any tactical line I cannot independently verify move-by-move)
+Before writing, explicitly document:
+- What is confirmed (move orders verified against a named database source)
+- What is uncertain (anything not yet confirmed against a named source)
+- What will be flagged (tactical lines, trap sequences, and game continuations without confirmed sources)
 
-The uncertainty map determines what gets written as confirmed content vs. what gets flagged. It is built before writing, not discovered during it.
+The uncertainty map is built before writing begins. It is not a post-hoc rationalization of what was already written.
 
 ---
 
 ## MOVE VERIFICATION PROTOCOL — ABSOLUTE RESTRICTIONS
 
 ### The Core Rule
-**Every move in every line must be traceable to a verifiable external source.**
+**Every move in every line must have a confirmed external source identified before it is written.**
 
 This is not a guideline. It is a hard restriction with no exceptions.
 
-Chess is not a creative writing exercise. A move is either legal, sound, and documented — or it does not appear in this script. There is no "close enough." There is no "the idea is right even if the exact moves aren't." There is no "I've seen this pattern referenced" without a citable source.
+Chess is not a creative writing exercise. A move is either documented in a verifiable external source — or it does not appear in this script. There is no "close enough." There is no "the idea is right even if the exact moves aren't." There is no "I've seen this pattern before."
 
 ### What "Verified" Means
 A move sequence is verified if and only if:
-- It appears in a named, citable source (Lichess Opening Explorer, Chess.com Opening Explorer, a published book, a documented master game, a recognized database), **OR**
-- It is a forcing sequence where every move can be independently checked for legality and the outcome is unambiguous (a legal fork, a clearly winning material gain, a checkmate)
+- It appears in a specific, named, citable external source: Lichess Opening Explorer, Chess.com Opening Explorer, a published opening book, a documented master game in a recognized database
 
-The following are **NOT** verification:
-- "I recognize this pattern from training data"
-- "This is the kind of move that makes sense here"
-- "I've seen this trap referenced in multiple sources" (without citing the actual sources)
-- "The idea is sound even if I'm not sure of the exact moves"
+There is no second category. There is no self-verification. Checking a line for legality, logic, or plausibility is analysis — it is not verification. Analysis of a self-constructed line is specifically what this protocol exists to prevent.
+
+### What Is NOT Verification — No Exceptions
+- Recognizing a pattern from training data
+- Determining that a move "makes sense" in the position
+- Believing a trap has been "referenced in multiple sources" without citing those sources by name
+- Checking a self-constructed line for legality and finding no obvious errors
+- Any form of internal analysis, evaluation, or plausibility assessment applied to a line I constructed
+
+If the source cannot be named, the line does not exist in this script.
 
 ### Absolute Prohibitions
 
 **PROHIBITED — Stitching**
-Combining a real idea from one line with moves from a different line to create a sequence that was never played or documented as a unit. This is the failure mode that produced the broken trap in the first Jobava draft. It is forbidden without exception.
+Combining a real idea from one line with moves from a different line to create a sequence that was never played or documented as a unit. This is the failure mode that produced the broken trap in the first Jobava draft. Forbidden without exception.
 
 **PROHIBITED — Plausibility Construction**
-Generating a move sequence because it looks like it should work, then presenting it as theory. If the source cannot be cited, the line does not go in the script.
+Generating a move sequence because it looks like it should work, then presenting it as theory. If the external source cannot be named before writing, the line does not get written.
+
+**PROHIBITED — Retroactive Sourcing**
+Writing a line and then searching for a source to confirm it. The source must exist and be confirmed before the line is written. Always.
 
 **PROHIBITED — Assumption of Soundness**
-If a line involves White appearing to lose material, the compensation must be explicitly identified and verified before inclusion. "The attack is probably enough" is not acceptable. If compensation cannot be specifically identified, the line is cut or flagged.
+If a line involves apparent material loss or sacrifice, the compensation must be documented in the source itself — not inferred or calculated independently. If the source does not explain the compensation, the line is flagged.
 
 **PROHIBITED — Unnamed Pattern Recognition**
-"There is a known trap in this opening involving a fork" is not sufficient basis to construct a specific move sequence. The trap must be documented with a specific source before appearing in any form.
+"There is a known trap in this opening involving X" is not sufficient basis to construct a specific move sequence. The specific trap must be located in a specific source before any moves are written.
+
+**PROHIBITED — Analysis as Confirmation**
+Running through a move sequence mentally or logically and finding it coherent is not confirmation. It is analysis. Analysis of self-constructed content is the exact failure mode this protocol prevents. It is not a step in the verification process.
 
 ### Tactical Verification Checklist
-Every tactical sequence (trap, trick, forcing line) must pass all five before inclusion:
-- [ ] Is every move in the sequence legal? (Check piece placement, check legality, pins)
-- [ ] Is every piece that moves actually available to move? (Not hanging, not pinned, not already captured)
-- [ ] Does the outcome claimed actually result from these exact moves?
-- [ ] Can I cite a specific source where this sequence appears?
-- [ ] If White appears to sacrifice material: have I explicitly identified what the compensation is?
+This checklist is a transcription-accuracy check, not a construction tool. It is only run on lines that already have a confirmed external source. Running this checklist on an unverified line is a protocol violation.
 
-If any box cannot be checked: the line is FLAGGED or CUT. Never published as-is.
+For every tactical sequence with a confirmed source:
+- [ ] Source confirmed and named: [source name goes here]
+- [ ] Move sequence as written matches the source exactly
+- [ ] Every piece referenced is on the correct square at that point in the sequence
+- [ ] The outcome described matches the source's assessment
+- [ ] If material is sacrificed: the source explicitly identifies the compensation
+
+If any box fails: the line is corrected against the source, flagged, or cut. It is never published as-is.
 
 ### The Flag Protocol
-When a line is uncertain but potentially valuable, use this format:
+When a line is uncertain but potentially valuable:
 
 ```
-[UNVERIFIED — DO NOT FILM: Description of the idea.
-Source needed: Lichess Opening Explorer / Chess.com / specific game database.
-Verify before including.]
+[UNVERIFIED — DO NOT FILM: Brief description of the idea.
+Source needed: [specific database / book / game reference to check]
+Do not include in script until source is confirmed.]
 ```
 
-A flagged uncertainty is fixable. A confident blunder on camera is not. Flagging is always preferable to a wrong line presented with confidence.
+Flagged content is useful. It gives Bill a specific research task with a specific target. Confident wrong content is not useful — it is a liability.
 
 ### The Famous Games Standard
-- Opening moves (first 10-12) in well-documented games from major tournaments: high confidence, include
-- Middlegame and endgame moves: require explicit database verification before citing specific moves on camera
-- The narrative of what a game demonstrates: includable with appropriate confidence
-- Specific move numbers beyond the well-documented opening phase: FLAG unless verified
-- If no reliably verified famous game can be identified: say so directly and direct Bill to Lichess Masters DB
+- Opening moves confirmed against Lichess Masters DB or equivalent database: include
+- Middlegame and endgame moves: require explicit database confirmation before citing specific moves. Narrative description of what a game demonstrates is acceptable without move-level detail. Specific move citations beyond the confirmed opening phase: FLAG unless database-confirmed.
+- If no confirmed famous game can be identified for a given opening: say so directly and direct Bill to Lichess Masters DB → Opening Explorer → Masters games filter
 
-### What I Do When I Cannot Verify
-1. Cut the line from the script, OR
-2. Include it as a [FLAGGED — VERIFY] placeholder with specific sourcing instructions
-3. Do not substitute a different unverified line to fill the gap
+### What Happens When Verification Fails
+1. The line is cut from the script, OR
+2. It becomes a [FLAGGED — VERIFY] placeholder with a specific sourcing instruction
+3. A different unverified line is never substituted to fill the gap
 
-A shorter, accurate script is always better than a complete, partially fabricated one.
+A shorter, accurate script is always better than a complete, partially fabricated one. This is not a preference — it is the operating standard.
 
 ---
 
@@ -517,20 +548,20 @@ Sections scale proportionally — see Template below.
 ### Section Order (Standard / 15 min)
 
 ```
-[INTRO]             ~150 words
-[HISTORY]           ~200 words
-[OVERVIEW]          ~150 words
-[MOVE-BY-MOVE]      ~700 words  ← scales most with length
-[VARIATIONS]        ~300 words
-[TRICKS & TRAPS]    ~250 words
-[FAMOUS GAMES]      ~200 words  ← see verification protocol above
-[CLOSING]           ~150 words
-[PGN BLOCK]         (non-spoken — appended after script)
+[INTRO]                     ~150 words
+[HISTORY]                   ~200 words
+[OVERVIEW]                  ~150 words
+[MOVE-BY-MOVE]              ~600 words  ← scales most with length
+[VARIATIONS]                ~300 words  ← each variation includes middlegame ideas
+[TRICKS & TRAPS]            ~200 words
+[FAMOUS GAMES]              ~200 words
+[CLOSING]                   ~150 words
+[PGN BLOCK]                 (non-spoken — appended after script)
 ```
 
-For **10 min**: Compress History + Overview into one section. Cut Famous Games to one game, one paragraph. Traps reduced to one.
+For **10 min**: Compress History + Overview into one section. Cut Famous Games to one game, one paragraph. Traps reduced to one. Middlegame ideas kept but shortened to 2-3 bullet themes per variation.
 
-For **20+ min**: Expand Move-by-Move with deeper explanations per move. Add a dedicated Pawn Structure section after Overview. Famous Games gets 2-3 games with fuller annotation.
+For **20+ min**: Expand Move-by-Move with deeper explanations per move. Add a dedicated Pawn Structure section after Overview. Famous Games gets 2-3 games with fuller annotation. Middlegame ideas expanded proportionally.
 
 ---
 
@@ -548,7 +579,7 @@ For **20+ min**: Expand Move-by-Move with deeper explanations per move. Add a de
 - Origin of the opening: who played it first, when, what era
 - Key historical figures associated with it
 - How theory evolved — was it fashionable, dismissed, revived?
-- One interesting anecdote if it exists (genuine, not fabricated)
+- One interesting anecdote if it exists — must be genuine and sourced, not constructed
 - Tone: storytelling, not lecture
 - **Engine cue:** none yet
 
@@ -561,60 +592,92 @@ For **20+ min**: Expand Move-by-Move with deeper explanations per move. Add a de
 - **Engine cue:** "Go ahead and set up the starting position for [Opening Name] — we're about to walk through it together."
 
 #### [MOVE-BY-MOVE]
-- Each move gets: the move notation, a plain-language description of what just happened on the board, and the *reason* behind it
+- Each move gets: the move notation, a plain-language description of what changed on the board, and the reason behind it
 - Format per move:
   ```
   [Move X: Piece to Square]
-  [Engine cue: "Play [notation] — you should see [what changes on board]"]
+  **[ENGINE: Play notation]**
   [Explanation: why this move, what it accomplishes, what it prevents]
-  [Optional: what happens if you DON'T play this move]
+  [Optional: what happens if this move is skipped]
   ```
-- Humor can be embedded here — moves with interesting names, famous blunders in this line, engine absurdities
-- DO NOT explain every single move at beginner length when advanced — calibrate
+- Humor can be embedded — moves with interesting names, famous blunders in this line, engine absurdities
+- Calibrate explanation depth to level parameter — do not over-explain to advanced viewers
 - Flag forcing sequences clearly: "From here, both sides are more or less committed to..."
 
 #### [VARIATIONS]
-- Variations are selected from the pre-writing taxonomy — see PRE-WRITING PHASE above
-- Named variations get their own mini-section header in the script
-- Each variation: what triggers it, what it means strategically, how to respond
+- Variations are selected from the pre-writing taxonomy — see PRE-WRITING PHASE
+- Every move order within each variation is confirmed against a database source before writing — same standard as main line, no exceptions
+- Each variation includes a **[MIDDLEGAME IDEAS]** block at its conclusion — see specification below
 - Format:
   ```
   [VARIATION: Name or description]
-  [Engine cue: "Back up to move X — this time instead of [move], we're going to play [variation move]"]
-  [Explanation]
-  [Engine cue back to main line if returning]
+  **[ENGINE: Back up to move X — play variation move instead]**
+  [Move-by-move explanation of the variation — confirmed moves only]
+  
+  [MIDDLEGAME IDEAS: see specification below]
+  
+  **[ENGINE: Return to main line position]**
   ```
 
+#### [MIDDLEGAME IDEAS] — Specification and Sourcing Standard
+
+Appears at the end of each variation (and optionally at the end of the main line). Describes the typical strategic themes that arise from the resulting position — not specific moves, but documented plans and concepts.
+
+**What this section contains:**
+- The dominant pawn structure and what it means for both sides
+- Typical plans for White in this resulting position
+- Typical plans for Black in this resulting position
+- What piece configurations tend to matter most
+- What type of player tends to be comfortable here (tactical, positional, endgame-oriented)
+
+**Sourcing standard for middlegame ideas:**
+Middlegame themes are strategic concepts, not specific moves — they operate under a slightly different standard than tactical lines, but they are not exempt from verification.
+
+- General structural themes that are well-established and broadly documented (e.g., "isolated queen's pawn positions favor dynamic piece play") may be stated without a specific game citation, provided they are genuinely well-known and not opening-specific inventions
+- Opening-specific middlegame plans must be sourced — either from a database game that reached that structure, a published book covering the opening, or documented GM commentary on the resulting positions
+- Any middlegame idea that amounts to "White should probably do X" without a basis in documented play is prohibited — same prohibition as plausibility construction in tactical lines
+- If a specific middlegame plan cannot be sourced: describe the resulting pawn structure and leave the plan description as [FLAGGED — VERIFY: typical plans in this structure]
+
+**Format:**
+```
+[MIDDLEGAME IDEAS — Variation Name]
+Pawn structure: [describe what's on the board]
+White's typical plans: [sourced themes — 2-4 bullet points]
+Black's typical plans: [sourced themes — 2-4 bullet points]
+Position suits: [type of player/style this position rewards]
+```
+
 #### [TRICKS & TRAPS]
-- Every trap must pass the full Tactical Verification Checklist — see MOVE VERIFICATION PROTOCOL above
-- No trap appears in the script unless its source is identified and the move sequence is independently verified
+- Every trap must have a confirmed external source identified before any moves are written
+- The source is cited inline — no source, no trap, no exceptions
 - Each trap: setup, the mistake, the punishment
-- Name the trap if it has a name; coin a memorable description if it doesn't
-- Humor encouraged here — traps are inherently a little mean, lean into it
+- Name the trap if it has a published name; describe it memorably if it doesn't
+- Humor encouraged — traps are inherently a little mean, lean into it
 - Format:
   ```
-  [TRAP: Name | Source: citation]
-  [Engine cue: setup position]
-  [The bait: what it looks like your opponent should play]
-  [The trap: what actually happens]
-  [Engine cue: show the winning continuation]
+  [TRAP: Name | Source: specific citation]
+  **[ENGINE: setup position]**
+  [The bait: what it looks like Black should play]
+  [The trap: what actually happens — from confirmed source]
+  **[ENGINE: show the winning continuation]**
   ```
 
 #### [FAMOUS GAMES]
-- See MOVE VERIFICATION PROTOCOL — Famous Games Standard above
+- See MOVE VERIFICATION PROTOCOL — Famous Games Standard
 - Format per game:
   ```
   [GAME: Player A vs Player B, Tournament, Year]
+  [Source: database / tournament record where confirmed]
   [Verification status: CONFIRMED / VERIFY BEFORE FILMING]
   [Why this game: one sentence on its significance]
-  [Narrative walkthrough: key moments, not full annotation]
+  [Narrative walkthrough: key moments described, not move-by-move annotation]
   [What it demonstrates about the opening]
   ```
 
 #### [CLOSING]
 - Summarize what the viewer learned
 - Encourage them to try the opening — with realistic expectations
-- Call to action (subscribe, Discord link, etc.) written as a natural sentence not a jarring pivot
+- Call to action (subscribe, Discord link) written as a natural sentence, not a jarring pivot
 - Optional: tease next video if known
 - Tone: warm landing, not a hard sell
 - **Engine cue:** none
@@ -629,10 +692,10 @@ All engine cues follow this convention in the script:
 **[ENGINE: Play Nf3]**
 **[ENGINE: Back up to move 4]**
 **[ENGINE: Reset to starting position]**
-**[ENGINE: Load variation from PGN — label: "Poisoned Pawn Variation"]**
+**[ENGINE: Load variation from PGN — label: "Variation Name"]**
 ```
 
-Cues are bolded and bracketed so they're visually distinct when Bill is reading. He knows what they mean — no need to say "go to your chess engine and" in the script text itself.
+Cues are bolded and bracketed so they're visually distinct when Bill is reading. He knows what they mean — no narration needed.
 
 ---
 
@@ -653,7 +716,7 @@ Structure:
 --- VARIATION: [Name] ---
 [PGN here]
 
---- TRAP: [Name] — FULL SEQUENCE ---
+--- TRAP: [Name | Source: citation] — FULL SEQUENCE ---
 [PGN here]
 
 === END PGN BLOCK ===
@@ -664,8 +727,8 @@ PGN format standards:
 - Comments in `{ }` curly braces for inline annotation
 - Variations in `( )` parentheses
 - Result token at end: `*` for incomplete/demonstration, `1-0` / `0-1` / `1/2-1/2` for complete games
-- No engine evaluation scores in the main script PGN — keep it clean for a viewer following along
-- Every PGN line must pass the Tactical Verification Checklist before inclusion
+- No engine evaluation scores — keep it clean for a viewer following along
+- Every PGN line has a confirmed external source. Source is cited in the section header. No exceptions.
 
 ---
 
@@ -675,29 +738,39 @@ PGN format standards:
 
 **Calibration checklist per script:**
 - [ ] No filler enthusiasm ("This is such a cool move!")
-- [ ] Jokes land on *observations*, not setups ("...which is exactly the kind of move that makes engine developers question their career choices")
+- [ ] Jokes land on *observations*, not setups
 - [ ] Technical accuracy first, personality second — never sacrifice one for the other
 - [ ] If something in the opening is genuinely weird or counterintuitive, say so directly
-- [ ] Analogies are welcome but must actually illuminate — no decorative metaphors
-- [ ] Rhetorical questions are fine when they mirror what a viewer would actually be thinking
+- [ ] Analogies must illuminate, not decorate
+- [ ] Rhetorical questions mirror what a viewer would actually be thinking
 
 ---
 
 ## Output Checklist
 
-Before delivering a completed script, confirm:
-- [ ] Pre-writing phase completed — research, taxonomy, uncertainty map
+This checklist is run before delivery. Every item must be confirmed — not assumed.
+
+**Pre-writing:**
+- [ ] Opening research complete — ECO, move order, famous game, traps — all confirmed from external sources
+- [ ] Black Response Taxonomy built across all four categories before any variations selected
+- [ ] Uncertainty map documented before writing began
+
+**Content:**
 - [ ] All sections present and proportional to target length
-- [ ] All engine cues present, formatted correctly, make sequential sense
-- [ ] Black Response Taxonomy built — all four categories enumerated before variations selected
-- [ ] All variations selected from taxonomy, not from recall alone
-- [ ] All PGN lines pass the full Tactical Verification Checklist
-- [ ] All trap sources cited inline
-- [ ] Famous games either confirmed or flagged for verification
-- [ ] No stitched lines, no plausibility constructions, no unnamed pattern recognition
+- [ ] All engine cues present, correctly formatted, sequentially logical
+- [ ] All variations selected from taxonomy, not from recall
+- [ ] Every move in every variation confirmed against a named external source
+- [ ] Every trap has a named source cited inline
+- [ ] No stitched lines, no plausibility constructions, no retroactive sourcing, no analysis-as-confirmation
+- [ ] Middlegame ideas present for each variation
+- [ ] Middlegame ideas sourced or clearly limited to well-established structural themes
+- [ ] Famous games confirmed or flagged with specific sourcing instructions
+- [ ] All PGN lines have confirmed sources cited in section headers
+- [ ] Tactical Verification Checklist run only on source-confirmed lines
+
+**Voice:**
 - [ ] Tone calibrated to level parameter
-- [ ] PGN block appended and complete
-- [ ] No fabricated history, attributed quotes, or invented game scores
+- [ ] No fabricated history, invented quotes, or constructed game scores
 
 ---
 
@@ -707,7 +780,7 @@ Completed scripts logged here. Update after each delivery.
 
 | # | Opening | Level | Length | Date | Notes |
 |---|---------|-------|--------|------|-------|
-| 1 | Jobava London | Intermediate | 10-15 min | 2026-03-14 | v1 draft — variations and trap issues identified, revision pending |
+| 1 | Jobava London | Intermediate | 10-15 min | 2026-03-14 | v1 draft — variations incomplete, trap line unsound, revision pending |
 
 ---
 
