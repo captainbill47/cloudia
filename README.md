@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-15 11:28 UTC
+# Cloudia Brain — Last updated: 2026-03-15 11:29 UTC
 
 ---
 
@@ -807,6 +807,56 @@ Completed scripts logged here. Update after each delivery.
 
 ### Project System 001: Chess Opening Video Script — Built and Refined
 [paste the full summary content here]
+
+## Session Summary — 2026-03-14 (corrected entry)
+
+### Project System 001: Chess Opening Video Script — Built and Refined
+
+A complete repeatable project system was designed, built, and iterated through three versions. Canonical file: /root/.openclaw/workspace/projects/PROJECTS.md, synced to Gist automatically every 3 hours via brain-sync.sh.
+
+Trigger format: New opening video: [Opening Name] | Level: [beginner / intermediate / advanced] | Length: [X min]. Defaults: intermediate, 15 min. Optional Variations override available.
+
+Output produced per trigger: Full spoken script with Intro, History, Overview, Move-by-Move with engine cues, Variations each with Middlegame Ideas block, Tricks and Traps, Famous Games, Closing, plus paste-ready PGN block.
+
+THE FUNDAMENTAL RULE: Source exists before anything is written. Find source, confirm it, write from it. Never reversed. Self-analysis of constructed lines is explicitly prohibited as verification.
+
+Absolute prohibitions: Stitching, Plausibility Construction, Retroactive Sourcing, Assumption of Soundness, Unnamed Pattern Recognition, Analysis as Confirmation.
+
+Tactical Verification Checklist is a transcription-accuracy tool only — runs exclusively on lines with a confirmed external source already identified. Running it on an unverified line is a protocol violation.
+
+Black Response Taxonomy: All four categories enumerated before any variations selected — (1) Prophylactic, (2) Structural, (3) Sharp/Counterattacking, (4) Transpositional. Prophylactic and structural responses must be actively sought as they are underrepresented in written theory.
+
+Middlegame Ideas block added to every variation: pawn structure, typical White plans, typical Black plans, player style notes. General structural themes acceptable without specific citation. Opening-specific plans require a documented source.
+
+Version history: v1 initial build, v2 verification and taxonomy added, v3 source-first made the fundamental rule, checklist reframed as transcription check only, self-verification path removed, variations held to same standard as traps, middlegame ideas added, Famous Games updated from confidence-based to database-confirmation-based.
+
+### Test Script: Jobava London — Intermediate, 10-15 min
+
+First draft produced. Two issues caught by Bill:
+
+Issue 1 — Incomplete variations: Anti-Jobava ...a6 (prophylactic, Category 1) and Semi-Slav ...c6+...e6 (structural, Category 2) were missing. Root cause: recall-based selection instead of systematic taxonomy.
+
+Issue 2 — Unsound trap line: After 1.d4 d5 2.Nc3 Nf6 3.Bf4 c5 4.e4 cxd4, script played 5.exd5 leaving Nc3 hanging to the d4 pawn — a material blunder. Root cause: stitching. Correct response is likely 5.Nxd4 or 5.Qxd4. Trap was not re-written — requires sourcing before any replacement is drafted.
+
+Revised Jobava script not yet produced. Next attempt must follow full pre-writing phase under v3 protocols.
+
+Archive: Jobava London | Intermediate | 10-15 min | 2026-03-14 | v1 draft only — variations incomplete, trap line unsound, revision pending.
+
+### Infrastructure completed
+- PROJECTS.md SCP workflow established
+- Confirmed brain-sync.sh is full overwrite — Gist is read mirror of VPS
+- Confirmed projects/ subfolder included in sync loop
+- Bill comfortable with SSH-in-first workflow for VPS work
+- Inbox relay on port 18800 appears inactive — direct file write to inbox.md is the working method
+
+### Traditional London closing script
+Written for Bill's Traditional London video already in production. Closes with 8-Bit Chess flavored Jobava tease: unlock the next level, loading up the Jobava, same universe different character.
+
+### Notes on Bill
+- Chess accuracy is non-negotiable — a mistake on camera is a credibility problem
+- Deliver one clean task at a time with a single ready-to-run command
+- Do not ask Bill to manually edit VPS files — deliver complete ready-to-deploy files
+- Bill caught both the variations gap and the illegal trap line independently — chess knowledge is solid at intermediate-plus level
 
 ---
 
