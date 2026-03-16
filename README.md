@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-16 07:07 UTC
+# Cloudia Brain — Last updated: 2026-03-16 07:17 UTC
 
 ---
 
@@ -355,8 +355,8 @@ Test promotion entry
 ## VPS
 - Provider: DigitalOcean
 - IP: 143.198.111.46
-- Spec: $4/month, 512MB RAM, 10GB disk, Ubuntu 24.04
-- Pagefile enabled for RAM headroom
+- Spec: 1GB RAM, 25GB disk, Ubuntu 24.04 (upgraded 2026-03-13 from 512MB/10GB)
+- Pagefile removed after upgrade — no longer needed
 
 ## Brain Files
 - Location: /root/.openclaw/workspace/
