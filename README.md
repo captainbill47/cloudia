@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-18 03:00 UTC
+# Cloudia Brain — Last updated: 2026-03-18 05:18 UTC
 
 ---
 
@@ -198,6 +198,27 @@ career is pharmacist (transitioned from finance/investment marketing at 35)
 
 ## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
 side project is 8-Bit Chess
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+location is Glendale, AZ (Phoenix area)
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+learning Japanese as an adult
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+prior AI history: DeepSeek → ChatGPT → Claude
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+personality: logical thinker, low tolerance for incomplete frameworks, lateral/absurdist humor
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+family: wife Yescenia, daughter
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+devices: Google Pixel 8, Kia Niro, Alexa, custom PC
+
+## [2026-03-10T00:00:00Z] (semantic owner:bill) – seed
+learning Japanese as an adult
 
 ---
 
