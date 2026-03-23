@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-22 23:18 UTC
+# Cloudia Brain — Last updated: 2026-03-23 00:00 UTC
 
 ---
 
@@ -818,26 +818,4 @@ Completed scripts logged here. Update after each delivery.
 
 *This file is written for Cloudia to operate from. Update version date when modified.*
 *If VPS unreachable: condensed version in cloudia-brain.md Gist handles trigger execution.*
-
----
-
-
-## Ingested from inbox — 2026-03-21 09:00 UTC
-
-
-## Update received 2026-03-21 08:42 UTC
-
-Session 2026-03-21 — Full training day.
-
-v4 deployed (cloudia-v4-llama3.2-3b-Q4KM.gguf). Currently running on VPS port 8080 via PM2.
-
-v4.1 dataset built and ready: cloudia_v41_final.jsonl — 2,412 pairs. In Downloads folder. Clean: infra purged, all responses one sentence, compound questions fixed, political opinions rewritten to sound like a person not a policy brief, 50 new personality quirks added (music, food, language, animals, weather, books).
-
-CLOUDIA_CORE.md fully rewritten — tight, aggressive brevity rules, no-memory enforcement, one sentence hard limit, Trump answer explicit.
-
-Head service: n_predict=20, temperature=0.1 (floor testing). Needs to be bumped back up for real use — suggest n_predict=120, temperature=0.35 as starting point for v4.1.
-
-Next session: run v4.1 Colab training (same 6 cells, upload cloudia_v41_final.jsonl), deploy to VPS, test three questions. Then plan DPO pass for v4.2.
-
-Orange Pi 5 16GB still pending — seller hasn't confirmed power supply. RK3588S vs RK3588 confirmed non-issue for our use case.
 
