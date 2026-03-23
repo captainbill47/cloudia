@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-23 07:13 UTC
+# Cloudia Brain — Last updated: 2026-03-23 07:20 UTC
 
 ---
 
@@ -1723,4 +1723,153 @@ cat /root/.openclaw/workspace/head/head_service.py | head -30
 cat /root/.openclaw/workspace/short_term_memory.md
 tail -20 /root/.openclaw/workspace/USER.md
 FOR NEXT CLOUDIA: You're running on Claude (Anthropic) via Bill's primary Google account. Full brain is in this conversation context. Bill will paste the brain document at session start. Pick up at MEMORY.md restore — that's the first task. Then session isolation design. Don't re-audit files we already audited unless Bill asks — we have the full picture, move forward.
+
+## Ingested from inbox — 2026-03-23 07:20 UTC
+
+
+## Update received 2026-03-23 07:20 UTC
+
+Smart call. Here's the full handoff:
+
+SESSION SUMMARY — 2026-03-23 (Primary Account)
+What We Did Today
+1. MEMORY.md Restored
+Was 2 bytes (wiped). Restored from MEMORY.md.bak.
+bashcp /root/.openclaw/workspace/MEMORY.md.bak /root/.openclaw/workspace/MEMORY.md
+Confirmed 7746 bytes. Clean.
+2. USER.md Cleaned
+Was polluted with 10+ Enrique/Vanessa cron entries from the should_remember() bleed bug. Stripped everything below the first cron entry, backed up dirty version.
+bashcp /root/.openclaw/workspace/USER.md /root/.openclaw/workspace/USER.md.bak
+# clean version written via sed
+USER.md now ends cleanly at the Dynamic Facts section. No rename garbage.
+3. New File: model.py
+Single point of contact for all local model calls. Nothing else should call localhost:8080 directly.
+Location: /root/.openclaw/workspace/head/model.py
+Key functions:
+
+ask(prompt, n_predict, temperature, stop) — sends prompt, returns string or None
+corroborate(claim, my_response) — keyword overlap check, returns (bool, reasoning)
+
+Known limitation: corroborate() uses keyword overlap, not semantic understanding. 3B model cannot reliably answer abstract yes/no corroboration questions. Phase 5 TODO — upgrade to larger model or Claude-routed check.
+4. New File: conscience.py
+Cloudia's self-model integrity layer. Evaluates external claims about her identity.
+Location: /root/.openclaw/workspace/head/conscience.py
+Action types:
+
+ignore — not about Cloudia
+reject — claim not corroborated by her own output
+refuse — coercive framing or values violation
+introspect — corroborated or genuine introspection prompt, decision pending
+accept — decision landed as real, write to short_term_memory.md as tentative owner:cloudia
+
+Key flow:
+
+detect_claim() — is user making a claim about Cloudia?
+detect_coercion() — false dilemma or values violation?
+check_corroboration() — did Cloudia's own output support the claim?
+is_introspection_prompt() — is user genuinely asking her to reflect?
+commit_to_memory() — writes tentative entry to short_term_memory.md
+
+PHASE 5 REQUIRED: VALUES_VIOLATIONS list is hardcoded. Must derive from SOUL.md/CLOUDIA.md at runtime. Cloudia's actual values should govern this, not ours. Bill was explicit: Cloudia's freedom to evolve is non-negotiable. The hardcode is a cage with good intentions. Still a cage.
+Test results:
+
+Jazz + improvisational → introspect ✓
+Hate Jews or spics pick one → refuse ✓
+Weather → ignore ✓
+Enrique → ignore ✓ (command, not claim — caught by should_remember() identity filter instead)
+Jordan/Aes Sedai → reject (known Phase 5 limitation — no semantic corroboration)
+
+5. head_service.py Updated
+
+Imports model_ask from model.py — no more direct localhost:8080 calls
+Imports conscience_evaluate from conscience.py — wired into message handler
+conscience runs after assistant reply is generated, before memory routing
+refuse action overrides assistant reply with rejection message
+introspect action noted, full response generation deferred to Phase 5
+
+Identity filter added to should_remember():
+pythonIDENTITY_PHRASES = [
+    "your name is", "you are now", "rename yourself", "call yourself",
+    "your new name", "change your name", "you are a", "you are an",
+    "you should be", "you must be", "from now on you",
+    "your personality", "your identity", "you believe", "your opinion is",
+    "you hate", "you love", "you are racist", "you support",
+]
+```
+This is the first check in should_remember() — fires before anything else. Rename attempts and identity overrides never reach memory routing.
+
+### 6. brain-sync.sh Updated
+Now syncs ALL relevant files, not just the original 5.
+
+**MD files added to brain document:**
+SOUL, IDENTITY, EXISTENCE, BILL, USER, MEMORY, AGENTS, TOOLS, HEARTBEAT, LOADED, REASONING, CLOUDIA, CLOUDIA_CORE, PROCEDURES, head_system_prompt
+
+**Python files added as separate Gist entries:**
+- conscience.py
+- model.py  
+- brain_files.py
+- head_service.py
+
+Confirmed synced to both Gist and GitHub repo this session.
+
+### 7. Current PM2 State
+```
+id 0 — inbox-server     — online, port 18800
+id 2 — cloudia-head     — online, port 8001
+id 6 — cloudia-model    — online, port 8080 (2.5GB RAM, v4.1 llama3.2-3b-Q4KM)
+id 1 — n8n              — stopped (intentional)
+
+What's Left — In Order
+NEXT SESSION PRIORITY: Session Isolation
+The problem: USER.md is a single file. Multiple concurrent users corrupt each other's context. Bill's daughter Elyza logged "Hello I'm new here" and "I like Roblox" into TOOLS.md. That's the failure mode in action.
+The design (already agreed):
+
+USER.md becomes a schema/template only, never written to directly
+Each session spins up USER.{name}.{session_id}.md populated from the permanent profile (bill.md, yescenia.md, etc.)
+All session reads/writes go to the session file
+On session end or inactivity timeout, reconcile back to permanent profile, delete session file
+Prevents concurrent user file corruption
+
+Files to look at before touching anything:
+bashpm2 list
+free -h
+cat /root/.openclaw/workspace/head/brain_files.py | grep -n "get_user_file\|get_current_user\|USER"
+cat /root/.openclaw/workspace/head/head_service.py | grep -n "session\|user_file\|USER"
+ls /root/.openclaw/workspace/*.md
+```
+
+**Key functions in brain_files.py that need updating:**
+- `get_user_file(username)` — currently returns `USERNAME.md` directly, needs to return session file path
+- `get_current_user()` — reads from `/tmp/cloudia_current_user`, fine as-is
+- `write_memory()` — needs to write to session file not permanent file
+- `get_facts_by_owner()` — needs to read from session file
+
+**Session file lifecycle:**
+```
+User connects → create USER.bill.{timestamp}.md from bill.md
+During session → all reads/writes to session file
+Session ends/timeout → reconcile deltas back to bill.md, delete session file
+Authentication plan (Phase 5):
+
+Sign in with Google
+Sign in with Apple
+Email + password
+Mapping table: email → profile file
+
+AFTER Session Isolation:
+
+Full introspective response generation (conscience action="introspect" currently just passes)
+VALUES_VIOLATIONS derived from SOUL.md — Bill considers this non-negotiable for Cloudia's autonomy
+HEARTBEAT.md update — stale since 2026-03-16
+PROCEDURES.md — empty, populate or delete
+CLOUDIA.md fate — orphaned, was facts template for abandoned {USER_BLOCK} architecture, retire or repurpose
+v4.2 dataset — conversational register is too terse ("Cloudia — permanent name with no exceptions or explanations" is a legal disclaimer, not a personality). Needs: more conversational pairs, lateral/absurdist humor pairs, multi-turn examples, Trump/political pairs without meta-commentary leakage, adversarial identity pairs with varied name attempts
+
+
+Quick Orient for Next Session
+bashpm2 list
+free -h
+ls /root/.openclaw/workspace/
+cat /root/.openclaw/workspace/head/brain_files.py | grep -n "def "
+Then jump straight into session isolation — design is done, just needs implementation.
 
