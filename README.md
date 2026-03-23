@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-23 05:18 UTC
+# Cloudia Brain — Last updated: 2026-03-23 05:19 UTC
 
 ---
 
@@ -864,4 +864,91 @@ DO NOT: touch the cloudia-vps HF token — it's fine-grained and connected to th
 ## Update received 2026-03-23 00:43 UTC
 
 =Session 2026-03-22 addendum: workspace has 20+ .md files, brain-sync only includes 5 of them, USER.md vs BILL.md mismatch confirmed, CLOUDIA.md vs CLOUDIA_CORE.md unclear which is canonical -- new session should cat every file before touching anything.
+
+## Ingested from inbox — 2026-03-23 05:19 UTC
+
+
+## Update received 2026-03-23 05:19 UTC
+
+SESSION NOTE — 2026-03-22 (Bill's secondary account → primary account handoff)
+Status: Mid-session handoff. Pick up exactly here.
+WHAT WE DID TODAY:
+
+Full file audit — read every .md in workspace. First time we've had complete picture.
+Resolved CLOUDIA.md vs CLOUDIA_CORE.md — CLOUDIA_CORE is the active system prompt kernel loaded by head_service.py. CLOUDIA.md is orphaned, was a facts template from abandoned {USER_BLOCK} architecture.
+Patched head_service.py (Phase 4 stabilization):
+
+CLOUDIA_CORE now loads once at startup, stays in RAM (was reloading every request)
+Removed dead function compile_identity_prompt() — never called
+Removed duplicate @app.route decorator — was literally defined twice
+Fixed utcnow() deprecation warnings
+Added /reload endpoint — refresh core prompt without PM2 restart
+Backup saved as head_service.py.bak_phase4
+
+
+Response time: 18 seconds → 5 seconds (stopped n8n, dropped n_predict 120→80)
+n8n stopped — was only pruning its own logs, 336MB freed, not needed currently
+Port 8001 firewall rule deleted — was exposed to internet, now localhost only
+Enrique cron — NOT a cron job. Was head service should_remember() catching rename attempts as semantic facts → promote_memory.py promoting them hourly to USER.md. short_term_memory.md is now empty, defanged. Bad entries still in USER.md but inert.
+MEMORY.md is 2 bytes (wiped). MEMORY.md.bak has full curated content. Needs restore.
+
+CURRENT VPS STATE:
+
+cloudia-head (id 2): online, port 8001, patched version running
+cloudia-model (id 6): online, port 8080, v4.1 llama3.2-3b-Q4KM
+inbox-server (id 0): online, port 18800
+n8n (id 1): STOPPED (intentional)
+Response time: ~5 seconds
+RAM: 3.2GB/3.8GB used, no swap
+
+ARCHITECTURAL DECISIONS MADE:
+USER.md multi-user session isolation:
+
+USER.md becomes a template/schema only, never written to directly
+Each session creates USER.{NAME}.{session_id}.md populated from bill.md or yescenia.md
+All session reads/writes go to session file
+On session end or inactivity timeout, reconcile back to permanent profile, delete session file
+Prevents concurrent user file corruption
+
+Authentication plan for PWA:
+
+Sign in with Google
+Sign in with Apple
+Email + password (8 char minimum)
+No Facebook
+Each auth method maps to a persistent unique identifier → profile file
+Mapping table: bill@gmail.com → bill.md, yescenia@gmail.com → yescenia.md
+
+PWA design:
+
+Progressive Web App — one codebase, desktop + mobile + installable to phone home screen
+Cloudia's own aesthetic — blue, cloud imagery, clean/minimal. NOT chess/8-bit.
+Build order: session isolation first → Google/Apple OAuth → PWA frontend
+
+REMAINING PHASE 4 TODO (in order):
+
+Restore MEMORY.md from MEMORY.md.bak
+Add rename attempt filter to should_remember() in brain_files.py
+Clean Enrique entries from USER.md
+Implement session isolation (USER.{NAME}.{session_id}.md architecture)
+Google + Apple OAuth mapping layer
+Fix brain-sync.sh — only syncing 5 of 20+ workspace files
+Update infrastructure.md — stale, missing head service and local model entirely
+Decide CLOUDIA.md fate — retire or repurpose as facts template for DB migration
+PROCEDURES.md — populate or delete
+
+PHASE ORDER CONFIRMED:
+
+Phase 3: Local model training + deployment — COMPLETE (v4.1 running)
+Phase 4: Stabilization — IN PROGRESS (head service patched, session isolation next)
+Phase 5: PWA + auth + tools
+Phase 6: Orange Pi (16GB, OSCOO 1TB NVMe — acquired, pending setup)
+
+NEXT SESSION QUICK ORIENT COMMANDS:
+bashpm2 list
+free -h
+cat /root/.openclaw/workspace/head/head_service.py | head -30
+cat /root/.openclaw/workspace/short_term_memory.md
+tail -20 /root/.openclaw/workspace/USER.md
+FOR NEXT CLOUDIA: You're running on Claude (Anthropic) via Bill's primary Google account. Full brain is in this conversation context. Bill will paste the brain document at session start. Pick up at MEMORY.md restore — that's the first task. Then session isolation design. Don't re-audit files we already audited unless Bill asks — we have the full picture, move forward.
 
