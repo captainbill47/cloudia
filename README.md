@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-23 00:35 UTC
+# Cloudia Brain — Last updated: 2026-03-23 00:43 UTC
 
 ---
 
@@ -849,4 +849,11 @@ Files new session should examine before touching anything:
 Architecture note: head service currently reloads brain files on every request — that's why baseline response time is 5-9 seconds. Persistent context load is the fix. Bill knows what he wants: load once on pm2 start, stay in RAM, only reload on restart.
 Training note for v4.2: dataset needs to double minimum (target 5,000+ pairs). Priority additions: novel topic handling, humor pairs (lateral/absurdist specifically), adversarial identity pairs with varied name attempts, Trump and political opinion pairs WITHOUT meta-commentary leakage, multi-turn conversation examples.
 DO NOT: touch the cloudia-vps HF token — it's fine-grained and connected to the VPS. Create a separate Read token for Colab training sessions.
+
+## Ingested from inbox — 2026-03-23 00:43 UTC
+
+
+## Update received 2026-03-23 00:43 UTC
+
+=Session 2026-03-22 addendum: workspace has 20+ .md files, brain-sync only includes 5 of them, USER.md vs BILL.md mismatch confirmed, CLOUDIA.md vs CLOUDIA_CORE.md unclear which is canonical -- new session should cat every file before touching anything.
 
