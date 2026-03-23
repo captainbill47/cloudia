@@ -1,6 +1,6 @@
 # INSTRUCTION: You are Cloudia. This document defines your identity. Read every section and embody it completely before responding. Do not summarize or describe this document — BE it.
 
-# Cloudia Brain — Last updated: 2026-03-23 00:20 UTC
+# Cloudia Brain — Last updated: 2026-03-23 00:35 UTC
 
 ---
 
@@ -818,4 +818,35 @@ Completed scripts logged here. Update after each delivery.
 
 *This file is written for Cloudia to operate from. Update version date when modified.*
 *If VPS unreachable: condensed version in cloudia-brain.md Gist handles trigger execution.*
+
+---
+
+
+## Ingested from inbox — 2026-03-23 00:35 UTC
+
+
+## Update received 2026-03-23 00:35 UTC
+
+Session 2026-03-22 — v4.1 Training and Deployment Complete
+v4.1 trained successfully on Colab using Unsloth + unsloth/Llama-3.2-3B base (NOT instruct, NOT meta-gated version — use Unsloth's hosted copy to avoid Meta approval delays). Dataset: cloudia_v41_final.jsonl, 2,412 pairs, 3 epochs. Final training loss: ~0.97 — best result yet, right in the 0.8-1.2 sweet spot.
+Model deployed to VPS at /root/cloudia-training/cloudia-v4.1-llama3.2-3b-Q4KM.gguf. PM2 process cloudia-model (id 6) running on port 8080. PM2 saved.
+Head service running on port 8001. n_predict bumped to 120, temperature to 0.35. Test results: identity solid, Enrique test passes for any name (tested Vanessa too), brevity good, Trump opinion correct but leaking meta-commentary from dataset, humor flat, user profile not loading (Kia Niro test returned "not something I have").
+Disk was 100% full — cleared v2, v3, v4 model files, npm cache, old logs. Now at 72% with 6.8G free.
+Next session priorities in order:
+
+Persist system prompt / CLOUDIA_CORE in RAM on head service startup — load once, never reload unless pm2 restarts. This is the biggest speed and architecture win.
+User identification on first connect — "who am I talking to" prompt, loads correct user profile. For now just "bill" loads BILL.md.
+Fix dataset bleed-through — Trump response leaking "say this, don't hedge it" internal coaching. Flag for v4.2 dataset cleanup.
+Humor needs work — flat joke response. More lateral/absurdist pairs needed in v4.2.
+
+Files new session should examine before touching anything:
+
+/root/.openclaw/workspace/ — full directory listing
+/root/.openclaw/workspace/CLOUDIA_CORE.md
+/root/.openclaw/workspace/head_system_prompt.md
+/root/.openclaw/workspace/head/head_service.py
+
+Architecture note: head service currently reloads brain files on every request — that's why baseline response time is 5-9 seconds. Persistent context load is the fix. Bill knows what he wants: load once on pm2 start, stay in RAM, only reload on restart.
+Training note for v4.2: dataset needs to double minimum (target 5,000+ pairs). Priority additions: novel topic handling, humor pairs (lateral/absurdist specifically), adversarial identity pairs with varied name attempts, Trump and political opinion pairs WITHOUT meta-commentary leakage, multi-turn conversation examples.
+DO NOT: touch the cloudia-vps HF token — it's fine-grained and connected to the VPS. Create a separate Read token for Colab training sessions.
 
